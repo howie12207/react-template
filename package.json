@@ -8,7 +8,15 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-        "lint:ts": "tsc --noEmit -p tsconfig.json --composite false"
+        "lint:css": "stylelint **/*.{vue,css,scss}",
+        "lint:ts": "tsc --noEmit -p tsconfig.json --composite false",
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "*.{js,vue,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint",
+        "*.{css,scss,sass,vue}": "stylelint",
+        "*.{css,scss,sass,vue,js,ts,jsx,tsx}": "prettier --check --ignore-unknown",
+        "*.{vue,ts,tsx}": "bash -c 'npm run lint:ts'"
     },
     "dependencies": {
         "react": "^18.0.0",
